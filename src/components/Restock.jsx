@@ -7,7 +7,9 @@ export default function Restock() {
 
   const fetchLowStock = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/products/low-stock");
+      const res = await fetch(
+        `${import.meta.env.VITE_BK_URL}/api/products/low-stock`
+      );
       const data = await res.json();
       setLowStockItems(data);
     } catch (err) {
@@ -24,7 +26,7 @@ export default function Restock() {
     if (quantity <= 0) return toast.error("Please enter a valid quantity.");
 
     try {
-      const res = await fetch("http://localhost:5000/api/restockproducts", {
+      const res = await fetch(`${import.meta.env.VITE_BK_URL}/api/restockproducts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId, quantity }),

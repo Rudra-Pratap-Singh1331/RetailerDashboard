@@ -37,7 +37,6 @@ const Addproduct = () => {
         description: "",
         category: "",
       });
-     
     } catch (error) {
       toast.error("Failed to add product.");
     }
@@ -53,13 +52,16 @@ const Addproduct = () => {
       const transcript = event.results[0][0].transcript;
       toast.loading("Processing with AI...");
       try {
-        const res = await fetch("http://localhost:5000/api/ai/fill-product", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: transcript }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_BK_URL}/api/ai/fill-product`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: transcript }),
+          }
+        );
         const data = await res.json();
-     
+
         toast.dismiss();
         if (!data.output || typeof data.output !== "object") {
           toast.error("Invalid AI response format.");

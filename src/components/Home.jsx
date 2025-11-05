@@ -26,12 +26,14 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [totalsRes, topRes, dailyRes, stockRes] = await Promise.all([
-          fetch("http://localhost:5000/api/dashboard/totals"),
-          fetch("http://localhost:5000/api/dashboard/top-products"),
+          fetch(`${import.meta.env.VITE_BK_URL}/api/dashboard/totals`),
+          fetch(`${import.meta.env.VITE_BK_URL}/api/dashboard/top-products`),
           fetch(
-            `http://localhost:5000/api/dashboard/daily-sales?days=${range}`
+            `${
+              import.meta.env.VITE_BK_URL
+            }/api/dashboard/daily-sales?days=${range}`
           ),
-          fetch("http://localhost:5000/api/products/low-stock"),
+          fetch(`${import.meta.env.VITE_BK_URL}/api/products/low-stock`),
         ]);
 
         const [totals, top, daily, stock] = await Promise.all([
@@ -104,7 +106,7 @@ export default function Home() {
         try {
           const dashboardData = { totals, topProducts, lowStock, dailySales };
           const res = await fetch(
-            "http://localhost:5000/api/gemini/summarize",
+            `${import.meta.env.VITE_BK_URL}/api/gemini/summarize`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
