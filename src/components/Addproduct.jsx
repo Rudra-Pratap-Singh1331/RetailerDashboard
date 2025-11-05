@@ -23,7 +23,7 @@ const Addproduct = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        "http://localhost:5000/api/product/addProduct",
+        `${import.meta.env.VITE_BK_URL}/api/product/addProduct`,
         formData,
         { withCredentials: true }
       );
