@@ -11,7 +11,7 @@ export default function Restock() {
       const data = await res.json();
       setLowStockItems(data);
     } catch (err) {
-      console.error("Failed to fetch low stock items:", err);
+      toast.error("Failed to fetch low stock items");
     }
   };
 

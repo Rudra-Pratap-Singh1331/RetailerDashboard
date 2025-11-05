@@ -9,6 +9,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { Mic } from "lucide-react";
+import toast from "react-hot-toast";
 
 let recognitionInstance = null;
 let isListening = false;
@@ -66,7 +67,7 @@ export default function Home() {
         setDailySales(formattedSales);
         setLowStock(stock);
       } catch (err) {
-        console.error("Dashboard fetch error:", err);
+        toast.dismiss("Dashboard fetch error");
       }
     };
 
@@ -133,7 +134,6 @@ export default function Home() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 gap-6 bg-white text-gray-800 min-h-screen">
-
       <div className="bg-white border border-gray-200 rounded-2xl shadow p-4 sm:p-6 text-center sm:text-left">
         <h2 className="text-lg sm:text-xl font-semibold text-[#0071dc] mb-2">
           Total Sales
@@ -193,7 +193,6 @@ export default function Home() {
         </ul>
       </div>
 
-
       <div className="bg-white border border-gray-200 rounded-2xl shadow p-4 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
           <h2 className="text-lg sm:text-xl font-semibold text-[#0071dc]">
@@ -246,7 +245,6 @@ export default function Home() {
           )}
         </div>
       </div>
-
 
       <div className="bg-white border border-gray-200 rounded-2xl shadow p-4 sm:p-6">
         <div className="flex flex-wrap justify-between items-center gap-3 mb-4">

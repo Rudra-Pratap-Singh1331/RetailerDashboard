@@ -37,7 +37,7 @@ const Addproduct = () => {
         description: "",
         category: "",
       });
-      console.log(result);
+     
     } catch (error) {
       toast.error("Failed to add product.");
     }
@@ -59,6 +59,7 @@ const Addproduct = () => {
           body: JSON.stringify({ text: transcript }),
         });
         const data = await res.json();
+     
         toast.dismiss();
         if (!data.output || typeof data.output !== "object") {
           toast.error("Invalid AI response format.");
